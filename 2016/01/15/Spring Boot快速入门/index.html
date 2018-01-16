@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/images/SpringBoot/start.spring.io.png">
 <meta property="og:image" content="http://yoursite.com/images/SpringBoot/structure.png">
-<meta property="og:updated_time" content="2018-01-15T14:18:20.943Z">
+<meta property="og:updated_time" content="2018-01-16T00:41:53.002Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot快速入门">
 <meta name="twitter:description" content="maven构建项目 访问http://start.spring.io/ 选择构建工具Maven Project、Spring Boot版本1.5.9以及一些工程基本信息，点击“Switch to the full version.”java版本选择8，可参考下图所示: 点击Generate Project下载项目压缩包 解压后，使用eclipse，Import -&amp;gt; Existing Mav">
@@ -361,7 +361,8 @@
 <li>点击Generate Project下载项目压缩包</li>
 <li>解压后，使用eclipse，Import -&gt; Existing Maven Projects -&gt; Next -&gt;选择解压后的文件夹-&gt; Finsh，OK done!</li>
 </ol>
-<h3 id="项目结构介绍"><a href="#项目结构介绍" class="headerlink" title="项目结构介绍"></a>项目结构介绍</h3><p><img src="/images/SpringBoot/structure.png" alt="start.spring.io.png"><br>如上图所示，Spring Boot的基础结构共三个文件:</p>
+<h3 id="项目结构介绍"><a href="#项目结构介绍" class="headerlink" title="项目结构介绍"></a>项目结构介绍</h3><p><img src="/images/SpringBoot/structure.png" alt="start.spring.io.png"></p>
+<p>如上图所示，Spring Boot的基础结构共三个文件:</p>
 <ul>
 <li>src/main/java  程序开发以及主程序入口</li>
 <li>src/main/resources 配置文件</li>
@@ -390,6 +391,7 @@
 <h3 id="开发环境的调试"><a href="#开发环境的调试" class="headerlink" title="开发环境的调试"></a>开发环境的调试</h3><p>热启动在正常开发项目中已经很常见了吧，虽然平时开发web项目过程中，改动项目启重启总是报错；但springBoot对调试支持很好，修改之后可以实时生效，需要添加以下的配置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">  &lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;</span><br><span class="line">    &lt;optional&gt;<span class="literal">true</span>&lt;/optional&gt;</span><br><span class="line">  &lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br><span class="line">&lt;build&gt;</span><br><span class="line">  &lt;plugins&gt;</span><br><span class="line">    &lt;plugin&gt;</span><br><span class="line">      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">      &lt;configuration&gt;</span><br><span class="line">        &lt;fork&gt;<span class="literal">true</span>&lt;/fork&gt;</span><br><span class="line">	  &lt;/configuration&gt;</span><br><span class="line">    &lt;/plugin&gt;</span><br><span class="line">  &lt;/plugins&gt;</span><br><span class="line">&lt;/build&gt;</span><br></pre></td></tr></table></figure></p>
 <p>该模块在完整的打包环境下运行的时候会被禁用。如果你使用java-jar启动应用或者用一个特定的classloader启动，它会认为这是一个“生产环境”。</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>使用spring boot可以非常方便、快速搭建项目，使我们不用关心框架之间的兼容性，适用版本等各种问题，我们想使用任何东西，仅仅添加一个配置就可以，所以使用sping boot非常适合构建微服务。</p>
+<p><a href="https://github.com/chenzhenlindx/SpringBootDemo" target="_blank" rel="noopener">github</a></p>
 
       
     </div>
