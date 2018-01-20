@@ -262,6 +262,484 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/20/重构——引入Databinding/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenzhenlindx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chenzhenlindx的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/20/重构——引入Databinding/" itemprop="url">重构——引入Databinding</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-20T09:55:20+08:00">
+                2018-01-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/重构/" itemprop="url" rel="index">
+                    <span itemprop="name">重构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h5 id="添加DataBinding支持"><a href="#添加DataBinding支持" class="headerlink" title="添加DataBinding支持"></a>添加DataBinding支持</h5><p>在Android Studio上使用，需要在module级别的build.gradle上添加对DataBinding的支持<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">    ....</span><br><span class="line">    dataBinding &#123;</span><br><span class="line">        enabled = <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="布局文件"><a href="#布局文件" class="headerlink" title="布局文件"></a>布局文件</h5><p>DataBinding的layout files和普通的非DataBinding布局文件是有一些区别的，下面是一个基础的使用了DataBinding的布局文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span>?&gt;</span><br><span class="line">&lt;layout xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span><br><span class="line"></span><br><span class="line">    &lt;data&gt;</span><br><span class="line">        &lt;variable</span><br><span class="line">            name=<span class="string">"user"</span></span><br><span class="line">            <span class="built_in">type</span>=<span class="string">"com.example.User"</span> /&gt;</span><br><span class="line">    &lt;/data&gt;</span><br><span class="line"></span><br><span class="line">    &lt;LinearLayout</span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">        android:orientation=<span class="string">"vertical"</span>&gt;</span><br><span class="line"></span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:layout_width=<span class="string">"wrap_content"</span></span><br><span class="line">            android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">            android:text=<span class="string">"@&#123;user.firstName&#125;"</span> /&gt;</span><br><span class="line"></span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:layout_width=<span class="string">"wrap_content"</span></span><br><span class="line">            android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">            android:text=<span class="string">"@&#123;user.lastName&#125;"</span> /&gt;</span><br><span class="line">    &lt;/LinearLayout&gt;</span><br><span class="line">&lt;/layout&gt;</span><br></pre></td></tr></table></figure></p>
+<h5 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h5><h6 id="点击事件onClick"><a href="#点击事件onClick" class="headerlink" title="点击事件onClick"></a>点击事件<code>onClick</code></h6><p><code>android:onClick=&quot;@{()-&gt;viewModel.logout()}</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;Button</span><br><span class="line">   android:id=<span class="string">"@+id/log_out"</span></span><br><span class="line">   android:layout_width=<span class="string">"268dp"</span></span><br><span class="line">   android:layout_height=<span class="string">"32dp"</span></span><br><span class="line">   android:layout_centerHorizontal=<span class="string">"true"</span></span><br><span class="line">   android:layout_marginTop=<span class="string">"40dp"</span></span><br><span class="line">   android:onClick=<span class="string">"@&#123;()-&gt;viewModel.logout()&#125;"</span></span><br><span class="line">   android:background=<span class="string">"@drawable/round_corner_logout"</span></span><br><span class="line">   android:text=<span class="string">"@string/log_out"</span></span><br><span class="line">   android:textColor=<span class="string">"#ffffff"</span></span><br><span class="line">   android:textSize=<span class="string">"14sp"</span> /&gt;</span><br></pre></td></tr></table></figure></p>
+<h6 id="ViewPager"><a href="#ViewPager" class="headerlink" title="ViewPager"></a><code>ViewPager</code></h6><ul>
+<li><code>setCurrentItem(int item)</code><br>在ViewModel创建<code>public ObservableInt mCurrentIndex = new ObservableInt();</code>然后在xml关联<pre><code class="bash">&lt;android.support.v4.view.ViewPager
+ android:id=<span class="string">"@+id/id_viewpager"</span>
+ android:layout_width=<span class="string">"match_parent"</span>
+ android:layout_height=<span class="string">"match_parent"</span>
+ app:currentItem=<span class="string">"@{viewModel.mCurrentIndex}"</span> /&gt;
+</code></pre>
+通过设置mCurrentIndex的值，即可改变ViewPager的显示位置<pre><code class="bash">public void setCurrentItem(int currentIndex) {
+mCurrentIndex.set(currentIndex);
+}
+</code></pre>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/20/重构智慧社区遇到的问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenzhenlindx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chenzhenlindx的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/20/重构智慧社区遇到的问题/" itemprop="url">重构智慧社区遇到的问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-20T07:28:04+08:00">
+                2018-01-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/重构/" itemprop="url" rel="index">
+                    <span itemprop="name">重构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h5 id="transformNativeLibsWithStripDebugSymbolForDebug"><a href="#transformNativeLibsWithStripDebugSymbolForDebug" class="headerlink" title="transformNativeLibsWithStripDebugSymbolForDebug"></a><code>transformNativeLibsWithStripDebugSymbolForDebug</code></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Error:Execution failed <span class="keyword">for</span> task <span class="string">':zhhxProperty:transformNativeLibsWithStripDebugSymbolForDebug'</span>.</span><br><span class="line">&gt; java.lang.NullPointerException (no error message)</span><br></pre></td></tr></table></figure>
+<h6 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h6><p>将<code>compileSdkVersion 19</code>改成<code>compileSdkVersion 27</code>，即升级所有<code>module</code>的<code>compileSdkVersion</code></p>
+<h5 id="Error-7-23-错误-程序包org-apache-http不存在"><a href="#Error-7-23-错误-程序包org-apache-http不存在" class="headerlink" title="Error:(7, 23) 错误: 程序包org.apache.http不存在"></a>Error:(7, 23) 错误: 程序包<code>org.apache.http</code>不存在</h5><h6 id="解决方案：-1"><a href="#解决方案：-1" class="headerlink" title="解决方案："></a>解决方案：</h6><p><code>build.gradle</code>中,在<code>buildToolsVersion</code>和<code>defaultConfig</code>之间添加如下代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useLibrary <span class="string">'org.apache.http.legacy'</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="FloatMath"><a href="#FloatMath" class="headerlink" title="FloatMath"></a>FloatMath</h5><p>Error:(117, 39) 错误: 找不到符号<br>符号:   方法 floor(float)<br>位置: 类 FloatMath</p>
+<h6 id="解决方案：-2"><a href="#解决方案：-2" class="headerlink" title="解决方案："></a>解决方案：</h6><p>将<code>FloatMath.floor()</code>改成<code>Math.floor()</code></p>
+<h5 id="setLatestEventInfo"><a href="#setLatestEventInfo" class="headerlink" title="setLatestEventInfo"></a><code>setLatestEventInfo</code></h5><p>Error:(403, 25) 错误: 找不到符号<br>符号:   方法 setLatestEventInfo(Context,String,String,PendingIntent)<br>位置: 类型为Notification的变量 notification</p>
+<h6 id="解决方案：-3"><a href="#解决方案：-3" class="headerlink" title="解决方案："></a>解决方案：</h6><p>将<code>notification.setLatestEventInfo(context, title, message, pi);</code><br>改成<code>showNotification(pi,title,message);</code></p>
+<pre><code class="bash">private void showNotification(PendingIntent contentIntent, String contentTitle, String contentText) {
+    //2、发布到通知栏，让监听者能点击
+    //获取NotificationManager实例
+    NotificationManager notifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+    //实例化NotificationCompat.Builde并设置相关属性
+    NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+            .setContentIntent(contentIntent)
+            .setDefaults(Notification.DEFAULT_ALL)
+            //设置小图标
+            .setSmallIcon(R.mipmap.ic_launcher)
+            //设置通知标题
+            .setContentTitle(TextUtils.isEmpty(contentTitle) ? getResources().getString(R.string.app_name) : contentTitle)
+            .setAutoCancel(<span class="literal">true</span>)
+            //设置通知内容
+            .setContentText(contentText);
+    //通过builder.build()方法生成Notification对象,并发送通知,id=1
+    notifyManager.notify(1, builder.build());
+}
+</code></pre>
+<h5 id="找不到Frganment的getContext-方法。"><a href="#找不到Frganment的getContext-方法。" class="headerlink" title="找不到Frganment的getContext()方法。"></a>找不到Frganment的getContext()方法。</h5><p>Error:(197, 28) 错误: 找不到符号<br>符号:   方法 getContext()<br>位置: 类 ComplaintClosedFragment </p>
+<h6 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h6><p>改用<code>getActivity()</code>方法。</p>
+<h5 id="找不到ViewPager的addOnPageChangeListener-方法。"><a href="#找不到ViewPager的addOnPageChangeListener-方法。" class="headerlink" title="找不到ViewPager的addOnPageChangeListener()方法。"></a>找不到ViewPager的addOnPageChangeListener()方法。</h5><p>Error:(428, 23) 错误: 找不到符号<br>符号:   方法 addOnPageChangeListener(ComplaintFragment.TabOnPageChangeListener)<br>位置: 类型为ViewPager的变量 mViewPager </p>
+<h6 id="解决方法：-1"><a href="#解决方法：-1" class="headerlink" title="解决方法："></a>解决方法：</h6><p>改用<code>setOnPageChangeListener()</code>方法。</p>
+<h5 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h5><p>1、图片框架改造；<br>2、include数据传递；<br>3、Mine整合</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/20/Android 代码规范 - 命名规范/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenzhenlindx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chenzhenlindx的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/20/Android 代码规范 - 命名规范/" itemprop="url">Android 代码规范 - 命名规范</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-20T07:20:00+08:00">
+                2018-01-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/命名规范/" itemprop="url" rel="index">
+                    <span itemprop="name">命名规范</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Layout"><a href="#Layout" class="headerlink" title="Layout"></a>Layout</h2><p>Layout的命名规则需要和使用他们的组件对应，方便查找和维护，比如我们在创建一个用户信息的<code>UserInfoActivity</code>，对应的Layout的命名就应该是<code>activity_user_info.xml</code>。对应Andorid组件的<code>Layout</code>命名规则:</p>
+<ul>
+<li>Activity  -&gt;   <code>activity_user_info.xml</code></li>
+<li>Fragment  -&gt;   <code>fragment_sign_up.xml</code></li>
+<li>Dialog    -&gt;   <code>dialog_change_password.xml</code></li>
+<li>AdapterView Item  -&gt;  <code>item_user.xml</code></li>
+<li>Layout文件只是布局文件的一部分  -&gt;    <code>partial_stats_bar.xml</code></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/16/czy1121_update应用笔记(二）——Android客户端/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1294,7 +1772,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1305,7 +1783,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1316,7 +1794,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
