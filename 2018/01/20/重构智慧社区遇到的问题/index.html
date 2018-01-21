@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="chenzhenlindx的博客">
 <meta property="og:description" content="transformNativeLibsWithStripDebugSymbolForDebug12Error:Execution failed for task &apos;:zhhxProperty:transformNativeLibsWithStripDebugSymbolForDebug&apos;.&amp;gt; java.lang.NullPointerException (no error message)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-20T06:17:19.284Z">
+<meta property="og:updated_time" content="2018-01-21T00:10:37.767Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="重构智慧社区遇到的问题">
 <meta name="twitter:description" content="transformNativeLibsWithStripDebugSymbolForDebug12Error:Execution failed for task &apos;:zhhxProperty:transformNativeLibsWithStripDebugSymbolForDebug&apos;.&amp;gt; java.lang.NullPointerException (no error message)">
@@ -354,35 +354,35 @@
       
         <h5 id="transformNativeLibsWithStripDebugSymbolForDebug"><a href="#transformNativeLibsWithStripDebugSymbolForDebug" class="headerlink" title="transformNativeLibsWithStripDebugSymbolForDebug"></a><code>transformNativeLibsWithStripDebugSymbolForDebug</code></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Error:Execution failed <span class="keyword">for</span> task <span class="string">':zhhxProperty:transformNativeLibsWithStripDebugSymbolForDebug'</span>.</span><br><span class="line">&gt; java.lang.NullPointerException (no error message)</span><br></pre></td></tr></table></figure>
 <h6 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h6><p>将<code>compileSdkVersion 19</code>改成<code>compileSdkVersion 27</code>，即升级所有<code>module</code>的<code>compileSdkVersion</code></p>
-<h5 id="Error-7-23-错误-程序包org-apache-http不存在"><a href="#Error-7-23-错误-程序包org-apache-http不存在" class="headerlink" title="Error:(7, 23) 错误: 程序包org.apache.http不存在"></a>Error:(7, 23) 错误: 程序包<code>org.apache.http</code>不存在</h5><h6 id="解决方案：-1"><a href="#解决方案：-1" class="headerlink" title="解决方案："></a>解决方案：</h6><p><code>build.gradle</code>中,在<code>buildToolsVersion</code>和<code>defaultConfig</code>之间添加如下代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useLibrary <span class="string">'org.apache.http.legacy'</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="Error-7-23-错误-程序包org-apache-http不存在"><a href="#Error-7-23-错误-程序包org-apache-http不存在" class="headerlink" title="Error:(7, 23) 错误: 程序包org.apache.http不存在"></a>Error:(7, 23) 错误: 程序包<code>org.apache.http</code>不存在</h5><h6 id="解决方案：-1"><a href="#解决方案：-1" class="headerlink" title="解决方案："></a>解决方案：</h6><p><code>build.gradle</code>中,在<code>buildToolsVersion</code>和<code>defaultConfig</code>之间添加如下代码<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useLibrary <span class="string">'org.apache.http.legacy'</span></span><br></pre></td></tr></table></figure></p>
 <h5 id="FloatMath"><a href="#FloatMath" class="headerlink" title="FloatMath"></a>FloatMath</h5><p>Error:(117, 39) 错误: 找不到符号<br>符号:   方法 floor(float)<br>位置: 类 FloatMath</p>
 <h6 id="解决方案：-2"><a href="#解决方案：-2" class="headerlink" title="解决方案："></a>解决方案：</h6><p>将<code>FloatMath.floor()</code>改成<code>Math.floor()</code></p>
 <h5 id="setLatestEventInfo"><a href="#setLatestEventInfo" class="headerlink" title="setLatestEventInfo"></a><code>setLatestEventInfo</code></h5><p>Error:(403, 25) 错误: 找不到符号<br>符号:   方法 setLatestEventInfo(Context,String,String,PendingIntent)<br>位置: 类型为Notification的变量 notification</p>
 <h6 id="解决方案：-3"><a href="#解决方案：-3" class="headerlink" title="解决方案："></a>解决方案：</h6><p>将<code>notification.setLatestEventInfo(context, title, message, pi);</code><br>改成<code>showNotification(pi,title,message);</code></p>
-<pre><code class="bash">private void showNotification(PendingIntent contentIntent, String contentTitle, String contentText) {
-    //2、发布到通知栏，让监听者能点击
-    //获取NotificationManager实例
+<pre><code class="java"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">showNotification</span><span class="params">(PendingIntent contentIntent, String contentTitle, String contentText)</span> </span>{
+    <span class="comment">//2、发布到通知栏，让监听者能点击</span>
+    <span class="comment">//获取NotificationManager实例</span>
     NotificationManager notifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-    //实例化NotificationCompat.Builde并设置相关属性
-    NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+    <span class="comment">//实例化NotificationCompat.Builde并设置相关属性</span>
+    NotificationCompat.Builder builder = <span class="keyword">new</span> NotificationCompat.Builder(<span class="keyword">this</span>)
             .setContentIntent(contentIntent)
             .setDefaults(Notification.DEFAULT_ALL)
-            //设置小图标
+            <span class="comment">//设置小图标</span>
             .setSmallIcon(R.mipmap.ic_launcher)
-            //设置通知标题
+            <span class="comment">//设置通知标题</span>
             .setContentTitle(TextUtils.isEmpty(contentTitle) ? getResources().getString(R.string.app_name) : contentTitle)
-            .setAutoCancel(<span class="literal">true</span>)
-            //设置通知内容
+            .setAutoCancel(<span class="keyword">true</span>)
+            <span class="comment">//设置通知内容</span>
             .setContentText(contentText);
-    //通过builder.build()方法生成Notification对象,并发送通知,id=1
-    notifyManager.notify(1, builder.build());
+    <span class="comment">//通过builder.build()方法生成Notification对象,并发送通知,id=1</span>
+    notifyManager.notify(<span class="number">1</span>, builder.build());
 }
 </code></pre>
 <h5 id="找不到Frganment的getContext-方法。"><a href="#找不到Frganment的getContext-方法。" class="headerlink" title="找不到Frganment的getContext()方法。"></a>找不到Frganment的getContext()方法。</h5><p>Error:(197, 28) 错误: 找不到符号<br>符号:   方法 getContext()<br>位置: 类 ComplaintClosedFragment </p>
 <h6 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h6><p>改用<code>getActivity()</code>方法。</p>
 <h5 id="找不到ViewPager的addOnPageChangeListener-方法。"><a href="#找不到ViewPager的addOnPageChangeListener-方法。" class="headerlink" title="找不到ViewPager的addOnPageChangeListener()方法。"></a>找不到ViewPager的addOnPageChangeListener()方法。</h5><p>Error:(428, 23) 错误: 找不到符号<br>符号:   方法 addOnPageChangeListener(ComplaintFragment.TabOnPageChangeListener)<br>位置: 类型为ViewPager的变量 mViewPager </p>
 <h6 id="解决方法：-1"><a href="#解决方法：-1" class="headerlink" title="解决方法："></a>解决方法：</h6><p>改用<code>setOnPageChangeListener()</code>方法。</p>
-<h5 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h5><p>1、图片框架改造；<br>2、include数据传递；</p>
+<h5 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h5><p>1、图片框架改造；<br><a href="http://highlightjs.readthedocs.io/en/latest/css-classes-reference.html" target="_blank" rel="noopener">http://highlightjs.readthedocs.io/en/latest/css-classes-reference.html</a></p>
 
       
     </div>
@@ -506,7 +506,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -517,7 +517,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -528,7 +528,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
