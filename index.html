@@ -262,6 +262,164 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/22/Android String.xml 相关/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenzhenlindx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chenzhenlindx的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/22/Android String.xml 相关/" itemprop="url">Android String.xml 相关</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-22T11:33:04+08:00">
+                2018-01-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/重构/" itemprop="url" rel="index">
+                    <span itemprop="name">重构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="动态显示"><a href="#动态显示" class="headerlink" title="动态显示"></a>动态显示</h4><blockquote>
+<p>%n$ms：代表输出的是字符串，n代表是第几个参数，设置m的值可以在输出之前放置空格<br>%n$md：代表输出的是整数，n代表是第几个参数，设置m的值可以在输出之前放置空格<br>%n$mf：代表输出的是浮点数，n代表是第几个参数，设置m的值可以控制小数位数，如m=2.2时，输出格式为00.00</p>
+<h5 id="1-s"><a href="#1-s" class="headerlink" title="%1$s"></a>%1$s</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">string</span> <span class="attr">name</span>=<span class="string">"loading"</span>&gt;</span>离下班回家还剩%1$s分钟<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String temp = getResources().getString(R.string.loading);</span><br><span class="line">String timeTip = String.format(temp,<span class="number">38</span>);</span><br></pre></td></tr></table></figure>
+<p>结果：离下班回家还剩<strong>38</strong>分钟</p>
+<h5 id="1-3s"><a href="#1-3s" class="headerlink" title="%1$3s"></a>%1$3s</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">string</span> <span class="attr">name</span>=<span class="string">"loading"</span>&gt;</span>离下班回家还剩%1$4s分钟<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String temp = getResources().getString(R.string.loading);</span><br><span class="line">String timeTip = String.format(temp,<span class="number">38</span>);</span><br></pre></td></tr></table></figure>
+<p>结果：离下班回家还剩<strong>  38</strong>分钟<br>注：m设置为4只有2个空格</p>
+<h5 id="1-2-2f"><a href="#1-2-2f" class="headerlink" title="%1$2.2f"></a>%1$2.2f</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">string</span> <span class="attr">name</span>=<span class="string">"loading"</span>&gt;</span>离下班回家还剩%1$2.2f分钟<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String temp = getResources().getString(R.string.loading);</span><br><span class="line">String timeTip = String.format(temp,<span class="number">1234.123</span>);</span><br></pre></td></tr></table></figure>
+<p>结果：离下班回家还剩<strong>1234.12</strong>分钟</p>
+<h4 id="的显示"><a href="#的显示" class="headerlink" title="%的显示"></a>%的显示</h4><p>使用%%来显示一个%<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">string</span> <span class="attr">name</span>=<span class="string">"loading"</span>&gt;</span>离下班回家还剩%1$2.2f%%分钟<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String temp = getResources().getString(R.string.loading);</span><br><span class="line">String timeTip = String.format(temp,<span class="number">34.123</span>);</span><br></pre></td></tr></table></figure>
+<p>结果：离下班回家还剩<strong>34.12%</strong>分钟</p>
+<h4 id="空格的显示"><a href="#空格的显示" class="headerlink" title="空格的显示"></a>空格的显示</h4><h5 id="amp-8194-半个中文字"><a href="#amp-8194-半个中文字" class="headerlink" title="&amp;#8194;半个中文字"></a><code>&amp;#8194;</code>半个中文字</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">string</span> <span class="attr">name</span>=<span class="string">"num"</span>&gt;</span>今日&amp;#8194;&amp;#8194;&amp;#8194;&amp;#8194;工单总数<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>结果：<br><img src="/images/string显示空格.png" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/21/JSON和Gson的使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1709,194 +1867,13 @@ subsys.Fire=<span class="keyword">new</span> Gson().fromJson(obj.optString(<span
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/11/15/《Android群英传》读书笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="chenzhenlindx">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="chenzhenlindx的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/11/15/《Android群英传》读书笔记/" itemprop="url">《Android群英传》读书笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-11-15T09:55:05+08:00">
-                2015-11-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">读书笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="第1章-Android体系与系统架构"><a href="#第1章-Android体系与系统架构" class="headerlink" title="第1章 Android体系与系统架构"></a>第1章 Android体系与系统架构</h4><ul>
-<li><code>Android</code>四大组件：<code>Activity</code>、<code>BroadcastReceiver</code>、<code>ContentProvider</code>和<code>Service</code>。 <sub>(P5)</sub></li>
-<li><a href="http://androidxref.com/" target="_blank" rel="noopener">androidxref.com-Android源代码网站</a><sub>(P6)</sub></li>
-</ul>
-<h4 id="第2章-Android开发工具新接触"><a href="#第2章-Android开发工具新接触" class="headerlink" title="第2章 Android开发工具新接触"></a>第2章 Android开发工具新接触</h4><ul>
-<li><a href="http://www.androiddevtools.cn/" target="_blank" rel="noopener">AndroidDevTools-Android镜像网站</a><sub>(P15)</sub></li>
-<li><p><strong>ADB命令使用技巧</strong><sub>(P24)</sub></p>
-<ul>
-<li><p>获取adb版本 </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb version</span><br></pre></td></tr></table></figure>
-<p>得到 </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Android Debug Bridge version 1.0.39</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>进入Shell命令 </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>退出Shell命令 </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>显示设备列表 </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb devices</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装Apk程序之Install </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb install -r F:\Test.apk</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>安装Apk程序之Push </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb push F:\Test.apk /data/app/</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>输出所有已经安装的应用 </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm list package -f</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>模拟按键输入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell input keyevent 3</span><br></pre></td></tr></table></figure>
-<p>一些常用的Code</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">input keyevent 82 menu</span><br><span class="line">input keyevent 3  home</span><br><span class="line">input keyevent 19 up</span><br><span class="line">input keyevent 20 down</span><br><span class="line">input keyevent 21 left</span><br><span class="line">input keyevent 22 right</span><br><span class="line">input keyevent 66 enter</span><br><span class="line">input keyevent 4  back</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>模拟滑动输入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb shell input touchscreen swipe &lt;x1&gt; &lt;y1&gt; &lt;x2&gt; &lt;y2&gt;</span><br><span class="line">adb shell input touchscreen swipe 18 665 300 665</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重新启动</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb reboot</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1944,7 +1921,7 @@ subsys.Fire=<span class="keyword">new</span> Gson().fromJson(obj.optString(<span
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
