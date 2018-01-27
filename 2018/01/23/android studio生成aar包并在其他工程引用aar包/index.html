@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="重构," />
 
 
 
@@ -79,16 +79,20 @@
 
 
 
-<meta name="description" content="Android开发者">
-<meta property="og:type" content="website">
-<meta property="og:title" content="chenzhenlindx的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2015/index.html">
+<meta name="description" content="1、aar包是android studio下打包android工程中src、res、lib后生成的aar文件，aar包导入其他android studio 工程后，其他工程可以方便引用源码和资源文件2、生成aar包的步骤：①.用android studio打开一个工程，然后新建一个Module，新建Module时候选择Android Library,后面按新建普通工程操作；②.在新建的Module">
+<meta name="keywords" content="重构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="android studio生成aar包并在其他工程引用aar包">
+<meta property="og:url" content="http://yoursite.com/2018/01/23/android studio生成aar包并在其他工程引用aar包/index.html">
 <meta property="og:site_name" content="chenzhenlindx的博客">
-<meta property="og:description" content="Android开发者">
+<meta property="og:description" content="1、aar包是android studio下打包android工程中src、res、lib后生成的aar文件，aar包导入其他android studio 工程后，其他工程可以方便引用源码和资源文件2、生成aar包的步骤：①.用android studio打开一个工程，然后新建一个Module，新建Module时候选择Android Library,后面按新建普通工程操作；②.在新建的Module">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/android编译aar引用.png">
+<meta property="og:updated_time" content="2018-01-23T05:27:12.580Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="chenzhenlindx的博客">
-<meta name="twitter:description" content="Android开发者">
+<meta name="twitter:title" content="android studio生成aar包并在其他工程引用aar包">
+<meta name="twitter:description" content="1、aar包是android studio下打包android工程中src、res、lib后生成的aar文件，aar包导入其他android studio 工程后，其他工程可以方便引用源码和资源文件2、生成aar包的步骤：①.用android studio打开一个工程，然后新建一个Module，新建Module时候选择Android Library,后面按新建普通工程操作；②.在新建的Module">
+<meta name="twitter:image" content="http://yoursite.com/images/android编译aar引用.png">
 
 
 
@@ -118,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2015/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/23/android studio生成aar包并在其他工程引用aar包/"/>
 
 
 
 
 
-  <title>归档 | chenzhenlindx的博客</title>
+  <title>android studio生成aar包并在其他工程引用aar包 | chenzhenlindx的博客</title>
   
 
 
@@ -143,7 +147,7 @@
     
   
 
-  <div class="container sidebar-position-right page-archive">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 	<a href="https://github.com/chenzhenlindx"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -247,74 +251,174 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 14 篇日志。 继续努力。
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2015">2015</h1>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/23/android studio生成aar包并在其他工程引用aar包/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="chenzhenlindx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chenzhenlindx的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2015/11/15/《Android群英传》读书笔记/" itemprop="url">
-              
-                <span itemprop="name">《Android群英传》读书笔记</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">android studio生成aar包并在其他工程引用aar包</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-11-15T09:55:05+08:00"
-              content="2015-11-15" >
-          11-15
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-23T13:19:36+08:00">
+                2018-01-23
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/重构/" itemprop="url" rel="index">
+                    <span itemprop="name">重构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
+      
+        <p>1、aar包是android studio下打包android工程中src、res、lib后生成的aar文件，aar包导入其他android studio 工程后，其他工程可以方便引用源码和资源文件<br>2、生成aar包的步骤：<br>①.用android studio打开一个工程，然后新建一个Module，新建Module时候选择Android Library,后面按新建普通工程操作；<br>②.在新建的Module中编写完代码后，接下来编译整个工程后就会自动生成aar包，包的路径在新建的Module ==》 build ===》outputs ==&gt;aar目录下<br>3、其他androidstudio工程引用aar包<br>①.将aar包复制到lib目录下<br>②.配置build.gradle文件：<br>加入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">repositories &#123;</span><br><span class="line">    flatDir &#123;</span><br><span class="line">    <span class="built_in">dirs</span> <span class="string">'libs'</span></span><br><span class="line">&#125;</span><br><span class="line">dependencies &#123;</span><br><span class="line">    ...</span><br><span class="line">    compile(name:<span class="string">'auil-debug'</span>, ext:<span class="string">'aar'</span>) </span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>③.编译一次工程<br>以上操作成功后可以在扩展包下看到被引用的aar包文件<br><img src="/images/android编译aar引用.png" alt=""></p>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/重构/" rel="tag"># 重构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/22/Android String.xml 相关/" rel="next" title="Android String.xml 相关">
+                <i class="fa fa-chevron-left"></i> Android String.xml 相关
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/24/Inspect Code常见问题/" rel="prev" title="Inspect Code常见问题">
+                Inspect Code常见问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -322,6 +426,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -548,6 +656,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
